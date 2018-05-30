@@ -1,23 +1,20 @@
 package tpe;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
-public class Vertice {
+public class Vertice{
 
 	String info;
 	List <Arista> adyacentes;
-	int distancia;
 	String estado;
 	Vertice padre;
 	
 	public Vertice(String info) {
 		this.info=info;
 		adyacentes= new ArrayList<Arista>();
-	}
-	public void setDistancia(int distancia) {
-		this.distancia=distancia;
 	}
 	
 	public void setPadre (Vertice v) {
@@ -26,6 +23,10 @@ public class Vertice {
 	
 	public void setEstado (String e) {
 		this.estado=e;
+	}
+	
+	public void ordenarAristas() {
+		Collections.sort(this.adyacentes, Collections.reverseOrder());
 	}
 	
 	public Vertice getPadre() {
@@ -43,10 +44,6 @@ public class Vertice {
 	public String getInfo() {
 		return this.info;
 	}	
-		
-	public int getDistancia() {
-		return this.distancia;
-	}
 	
 	public void addAdyacentes(Arista arista) {
 		this.adyacentes.add(arista);
@@ -59,4 +56,5 @@ public class Vertice {
 	public int sizeAdyacentes() {
 		return this.adyacentes.size();
 	}
+
 }

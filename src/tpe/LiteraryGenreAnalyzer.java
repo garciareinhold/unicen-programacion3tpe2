@@ -1,13 +1,14 @@
 package tpe;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class LiteraryGenreAnalist {
+public class LiteraryGenreAnalyzer {
 
 	private CSVReader reader;
 	GrafoDirigido genreGraph;
 	
-	public LiteraryGenreAnalist() {
+	public LiteraryGenreAnalyzer() {
 		this.reader= new CSVReader();
 		this.genreGraph= new GrafoDirigido();
 	}
@@ -60,7 +61,44 @@ public class LiteraryGenreAnalist {
 				auxAnterior= siguiente;
 			}
 		}
+		List<Vertice> vertices= this.genreGraph.getListaVertices();
+		int size= vertices.size();
+		for(int i=0; i<size; i++) {
+			vertices.get(i).ordenarAristas();
+		}
 	}
+	
+	public List<String> servicioA(int n, String a){
+		
+		List<String> retorno= new ArrayList<String>();
+		Vertice v= this.genreGraph.getVertice(a);
+		if (v!=null) {
+			List<Arista> ady= v.getAdyacentes();
+			for(int i=0; i<n && i<ady.size(); i++) {
+				retorno.add(ady.get(i).getDestino().getInfo());
+			}
+			return retorno;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public List<String> servicioB(String a){
+		Vertice v= this.genreGraph.getVertice(a);
+		if(v!=null) {
+			List<String> retorno= new ArrayList<String>();
+			this.genreGraph.dfs(v, retorno);
+			return retorno;
+		}
+		else {
+			return null;
+		}
+	}
+	
+	
+	
+	
 
 	public void printGenreGraph() {
 		this.genreGraph.printGraph();

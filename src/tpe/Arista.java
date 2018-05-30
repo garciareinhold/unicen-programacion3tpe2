@@ -1,7 +1,7 @@
 package tpe;
 
 
-public class Arista {
+public class Arista implements Comparable<Arista> {
 
 	int peso;
 	Vertice origen;
@@ -35,6 +35,10 @@ public class Arista {
 	
 	public int getPeso() {
 		return this.peso;
+	}
+
+	public int compareTo(Arista o) {
+		return Integer.compare(this.peso, o.getPeso());
 	}
 
 }

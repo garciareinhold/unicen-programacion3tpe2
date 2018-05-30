@@ -49,25 +49,30 @@ public class GrafoDirigido {
 		return c.getAdyacentes();
 	}
 
-	public void dfs(Vertice origen) {
+	public void dfs(Vertice origen, List<String> lista) {
 		List<Vertice> listaVertices = vertices.recorrerPreOrden();
 		for(int i=0; i<listaVertices.size(); i++) {
 			listaVertices.get(i).setEstado("blanco");
 			listaVertices.get(i).setPadre(null);
 		}
-		dfs_visit(origen);
+		dfs_visit(origen, lista);
 	}
 
-	private void dfs_visit(Vertice vertice) {
+	private void dfs_visit(Vertice vertice, List<String> lista) {
 		vertice.setEstado("amarillo");
 		List<Arista>vecinos= vertice.getAdyacentes();
 		for(int j=0; j<vecinos.size(); j++) {
 			if(vecinos.get(j).getDestino().getEstado().equals("blanco")) {
 				vecinos.get(j).getDestino().setPadre(vertice);
-				dfs_visit(vecinos.get(j).getDestino());
+				dfs_visit(vecinos.get(j).getDestino(), lista);
 			}
 		}
 		vertice.setEstado("negro");
+		lista.add(vertice.getInfo());
+	}
+	
+	public List<Vertice> getListaVertices() {
+		return this.vertices.recorrerPreOrden();
 	}
 	
 	public void printGraph() {
