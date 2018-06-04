@@ -16,7 +16,7 @@ public class GrafoDirigido {
 		padres= new ArrayList <Vertice>();
 		estados= new ArrayList<String>();
 		vertices= new Abb();
-	}
+	} 
 	
 	public void addVertice(Vertice v) {
 			this.vertices.insert(v);

@@ -20,7 +20,7 @@ public class LiteraryGenreAnalyzer {
 		
 		//por cada una de las lineas...
 		for(int i=0; i<lineas.size(); i++) {
-			//rescato la primer linea
+			//rescato la primer linea 
 			String []linea = lineas.get(i);
 			// rescato el primer genero
 			String genero= linea[0]; 
@@ -97,7 +97,7 @@ public class LiteraryGenreAnalyzer {
 	}
 	
 	
-	
+
 	
 
 	public void printGenreGraph() {
