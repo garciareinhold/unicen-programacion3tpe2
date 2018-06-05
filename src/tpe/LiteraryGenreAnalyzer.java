@@ -96,8 +96,9 @@ public class LiteraryGenreAnalyzer {
 		}
 	}
 	
-	
-	
+	public void servicioC(String genero){
+		 this.genreGraph.dfs_ciclo(genero);
+	}
 	
 
 	public void printGenreGraph() {
