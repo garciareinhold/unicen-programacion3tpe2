@@ -76,32 +76,37 @@ public class GrafoDirigido {
 		return this.vertices.recorrerPreOrden();
 	}
 	
-public void dfs_ciclo(String vertice) {
+	public void dfs_ciclo(String vertice, List<String> resultado) {
 		
 		List <Arista> adyacentes= this.getVertice(vertice).getAdyacentes();
 
 		boolean cycle=false;
 		
 		for(int j=0; j<adyacentes.size(); j++) {
-			List<Vertice> parcial = new ArrayList<Vertice>();
-			adyacentes.get(j).getDestino().setEstado("blanco");
-			this.vertices.getElem(vertice).setEstado("amarillo");
+			List<String> parcial = new ArrayList<String>();
+			//adyacentes.get(j).getDestino().setEstado("blanco");
+			this.setEstadoBlanco();
+			this.vertices.getElem(vertice).setEstado("amarillo"); 
 			thereIsAcycle(adyacentes.get(j).getDestino(), parcial, vertice); 
-			System.out.println(cycle + " " + adyacentes.get(j).getDestino().getInfo());
-			for(int i=0;i<parcial.size();i++) {
-				System.out.println(parcial.get(i).getInfo()); 
-			}		
-			System.out.println("////////////////////////////////////////////////////////////////");
-		}
-		
+			//System.out.println(cycle + " " + adyacentes.get(j).getDestino().getInfo());
+			this.agregarSinRepetir(resultado, parcial);			
+		}		
 	}
 	
-	private void thereIsAcycle(Vertice vertice, List<Vertice> parcial, String comienzoCiclo) {
+	public void agregarSinRepetir(List<String> resultado, List<String> agregar) {
+		for(int i=0;i<agregar.size();i++) {
+			if(!resultado.contains(agregar.get(i))) {
+				resultado.add(agregar.get(i));
+			}			
+		}
+	}
+	
+	private void thereIsAcycle(Vertice vertice, List<String> parcial, String comienzoCiclo) {
 		
 		vertice.setEstado("amarillo"); 
 		List <Arista> adyacentes= vertice.getAdyacentes();	
 		int j=0;
-		parcial.add(vertice);
+		parcial.add(vertice.getInfo());
 		
 		while((j<adyacentes.size())) {
 
@@ -121,64 +126,17 @@ public void dfs_ciclo(String vertice) {
 	
 	}
 	
-	public void getCiclo (String vertice) {
-		this.dfs_ciclo(vertice);
-	}
+//	public void getCiclo (String vertice) {
+//		this.dfs_ciclo(vertice); 
+//	}
 	
-	/*public List<String> dfs_ciclo(String nombreGenero) {
-		List<String> retorno= new ArrayList<String>();
-		List<Vertice> vertices= this.getListaVertices();
+	public void setEstadoBlanco () {
+		List<Vertice> vertices = this.getListaVertices();
 		for(int i=0; i<vertices.size();i++) {	
 			vertices.get(i).setEstado("blanco");
 			vertices.get(i).setPadre(null);
-		}	
-			Vertice genero=this.vertices.getElem(nombreGenero);;
-			genero.setEstado("amarillo");
-			List <Arista> adyacentes=genero.getAdyacentes();
-			int j=0;
-			while(j<adyacentes.size()) {
-				if(adyacentes.get(j).getDestino().getEstado().equals("blanco")) {
-					thereIsAcycle(adyacentes.get(j).getDestino(), retorno, nombreGenero);
-				}
-				j++;
-			}			
-		return retorno;
-	}
-
-	private void thereIsAcycle(Vertice vertice, List<String> retorno, String generoOrigen) {
-		vertice.setEstado("amarillo");
-		List <Arista> adyacentes= vertice.getAdyacentes();	
-		int j=0;
-		while(j<adyacentes.size()) {
-			Vertice v= adyacentes.get(j).getDestino();
-			if(v.getEstado().equals("blanco")) {
-				v.setPadre(vertice);
-				thereIsAcycle(v, retorno, generoOrigen);
-			} 
-				
-			else {
-				if(v.getEstado().equals("amarillo")) {
-					getGrafoResultante(vertice, retorno, generoOrigen);				
-					
-				} 
-			}
-			j++;
 		}
-		vertice.setEstado("negro");
-	}
-
-	
-	private void getGrafoResultante(tpe.Vertice vertice, List<String> retorno, String generoOrigen) {
-		retorno.add(vertice.getInfo());
-		Vertice padre= vertice.getPadre();
-		while((padre!=null)&&(padre.getInfo()!=generoOrigen)) {
-			if (!retorno.contains(padre.getInfo())) {
-				retorno.add(padre.getInfo());
-				padre= padre.getPadre();
-			}
-			
-		}	
-	}*/
+	} 
 
 	public void printGraph() {
 		List<Vertice> listaVertices= this.vertices.recorrerPreOrden();
