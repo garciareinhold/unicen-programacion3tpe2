@@ -32,11 +32,11 @@ public class GrafoDirigido {
 	}
 	
 	public double getComparacionesCiclo() {
-		return this.getComparacionesCiclo();
+		return this.comparacionesCiclo;
 	}
 	
 	public int getBusquedaPorAristas() {
-		return this.getBusquedaPorAristas();
+		return this.busquedaPorAristas;
 	}
 
 	public void addVertice(Vertice v) {
