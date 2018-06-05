@@ -1,23 +1,29 @@
 package tpe;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Test {
 
 	public static void main(String[] args) {
-		
+
 		LiteraryGenreAnalyzer tool= new LiteraryGenreAnalyzer();
-		tool.generateGenreGraph("C:/Users/German/Downloads/datasets-2da etapa/dataset4.csv");
+		tool.generateGenreGraph("C:/datasets-etapa2/dataset4.csv");
+		System.out.println(tool.getBusquedaPorAristas());
+		
+		System.out.println(tool.getCantidadGeneros());
 		//tool.printGenreGraph();
-		System.out.println(tool.servicioA(6, "tecnología"));
-		System.out.println(tool.servicioB("tecnología"));
-		List<String> resultado = new ArrayList<String>();
-		tool.servicioC("tecnología", resultado);
-		for(int i=0;i<resultado.size();i++) {
-			System.out.println(resultado.get(i));
-		}
+		
+		System.out.println(tool.servicioA(6, "cine"));
+		System.out.println(tool.getBusquedasGenero());
+		//Servicio 2 y los contadores que arroja
+		System.out.println(tool.servicioB("cine"));
+		System.out.println(tool.getEntradasRecursivasS2());
+		
+		
+		
+		//Servicio 3 y los contadores que arroja
+		System.out.println(tool.servicioC("cine"));
+		System.out.println(tool.getEntradasRecursivasS3());
+		System.out.println(tool.getComparacionesCiclo());
 
 	}
-
 }

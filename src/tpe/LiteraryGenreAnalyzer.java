@@ -7,8 +7,10 @@ public class LiteraryGenreAnalyzer {
 
 	private CSVReader reader;
 	GrafoDirigido genreGraph;
+	int cantidadGeneros;
 	
 	public LiteraryGenreAnalyzer() {
+		this.cantidadGeneros=0;
 		this.reader= new CSVReader();
 		this.genreGraph= new GrafoDirigido();
 	}
@@ -63,6 +65,7 @@ public class LiteraryGenreAnalyzer {
 		}
 		List<Vertice> vertices= this.genreGraph.getListaVertices();
 		int size= vertices.size();
+		this.cantidadGeneros=size;
 		for(int i=0; i<size; i++) {
 			vertices.get(i).ordenarAristas();
 		}
@@ -96,8 +99,8 @@ public class LiteraryGenreAnalyzer {
 		}
 	}
 	
-	public void servicioC(String genero, List<String> resultado){
-		 this.genreGraph.dfs_ciclo(genero, resultado);
+	public List<String> servicioC(String genero){
+		 return this.genreGraph.dfs_ciclo(genero);
 	}
 	
 
@@ -105,5 +108,27 @@ public class LiteraryGenreAnalyzer {
 		this.genreGraph.printGraph();
 	}
 	
-		
+	public double getEntradasRecursivasS2() {
+		return this.genreGraph.getEntradasRecursivasS2();
+	}
+	
+	public double getEntradasRecursivasS3() {
+		return this.genreGraph.getEntradasRecursivasS3();
+	}
+	
+	public double getComparacionesCiclo() {
+		return this.genreGraph.getComparacionesCiclo();
+	}
+	
+	public int getBusquedaPorAristas() {
+		return this.genreGraph.getBusquedaPorAristas();
+	}
+	
+	public int getCantidadGeneros() {
+		return this.cantidadGeneros;
+	}	
+	
+	public int getBusquedasGenero() {
+		return this.genreGraph.getBusquedasGenero();
+	}
 }

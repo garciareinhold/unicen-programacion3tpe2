@@ -17,9 +17,6 @@ public class Vertice{
 		adyacentes= new ArrayList<Arista>();
 	}
 	
-	public void setPadre (Vertice v) {
-		this.padre=v;
-	}
 	
 	public void setEstado (String e) {
 		this.estado=e;
@@ -29,12 +26,12 @@ public class Vertice{
 		Collections.sort(this.adyacentes, Collections.reverseOrder());
 	}
 	
-	public Vertice getPadre() {
-		return this.padre;
-	}
-	
 	public String getEstado() {
 		return this.estado;
+	}
+	
+	public Vertice getPadre() {
+		return this.padre;
 	}
 	
 	public void setInfo(String o) {
@@ -55,6 +52,10 @@ public class Vertice{
 	
 	public int sizeAdyacentes() {
 		return this.adyacentes.size();
+	}
+
+	public void setPadre(Vertice padre) {
+		this.padre=padre;
 	}
 
 }
