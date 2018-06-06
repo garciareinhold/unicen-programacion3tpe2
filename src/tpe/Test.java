@@ -66,7 +66,7 @@ public class Test {
 					System.out.println("Resultado: "+tool.servicioA(n, genero)+"\n");
 				break;
 				case 2:
-					System.out.println("Todos los generos buscados luego de: "+genero);
+					System.out.println("Todos los generos buscados luego de "+genero+", incluido el mismo:");
 					List<String> resultB= tool.servicioB(genero);
 					if (resultB.size()==1) {
 						System.out.println("No hay géneros buscados luego de: "+genero+"\n");
@@ -76,7 +76,7 @@ public class Test {
 					}
 				break;
 				case 3:
-					System.out.println("Géneros afines de: "+genero);
+					System.out.println("Géneros afines de "+genero+", incluido el mismo:");
 					List<String> resultC= tool.servicioC(genero);
 					if (resultC.size()<=1) {
 						System.out.println("No hay géneros afines de: "+genero+"\n");
